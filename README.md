@@ -1,5 +1,7 @@
 # bike-repairs
 
+![Linting](https://github.com/muizzzafar11/SEG3125-Project1/actions/workflows/node.js.yml/badge.svg)
+
 ## Project setup
 ```
 npm install
