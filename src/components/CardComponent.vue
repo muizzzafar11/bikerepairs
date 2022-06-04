@@ -19,7 +19,7 @@
         </b-card-text>
         <template #footer>
           <div class="text-center">
-            <b-button variant="secondary" @click="select()">{{buttonVal}}</b-button>
+            <b-button variant="secondary" @click="select()">{{selected?'selected':'select'}}</b-button>
           </div>
         </template>
       </b-card>
@@ -33,22 +33,24 @@ export default {
     title: String,
     subtitle: String,
     body: Array,
+    buttonBool: Boolean,
   },
   data() {
     return {
-      buttonVal: 'select',
+      selected: this.buttonBool,
     }
   }, 
   methods: {
     select() {
-      this.buttonVal = 'selected';
-      window.localStorage.setItem('selectedPackage', JSON.stringify(
-        {
-          'Name': this.title,
-          'Price': this.subtitle,
-        }
-      ));
-      console.log(this.body)
+      this.selected = !this.selected;
+      if (this.selected)
+        this.$emit('selected', this.selected)
+      window.localStorage.setItem('selectedPackage', 
+      this.selected? this.subtitle.substring(this.subtitle.indexOf('$')+1) : null)
+    }
+  }, watch: {
+    buttonBool(newVal) {
+      this.selected = newVal;
     }
   }
 }

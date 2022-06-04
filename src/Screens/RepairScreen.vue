@@ -3,15 +3,15 @@
     <div>
       <h3 class="mb-4 text-center">Seasonal Repairs</h3>
       <b-card-group class="d-flex justify-content-around pb-5">
-        <card-component class=" mx-2" title="Basic Tuneup" subtitle="$20" :body=description1></card-component>
-        <card-component class=" mx-2" title="Classic Tuneup" subtitle="$50" :body=description2></card-component>
-        <card-component class=" mx-2" title="Premium Tuneup" subtitle="$70" :body=description3></card-component>
+        <card-component class=" mx-2" title="Basic Tuneup" subtitle="$20" :body=description1 :buttonBool="package1" @selected="selected1"></card-component>
+        <card-component class=" mx-2" title="Classic Tuneup" subtitle="$50" :body=description2 :buttonBool="package2" @selected="selected2"></card-component>
+        <card-component class=" mx-2" title="Premium Tuneup" subtitle="$70" :body=description3 :buttonBool="package3" @selected="selected3"></card-component>
       </b-card-group>
     </div>
     <h3 class="mb-4 mt-5 text-center">Individual Part Repair</h3>
     <div class="d-flex justify-content-center mb-5">
       <div class="w-50" style="background: white; border-radius: 10rem">
-        <v-select :options="options" v-model="selected" multiple/>
+        <v-select :options="options" :reduce="(option) => option.id" v-model="selected" multiple/>
       </div>
     </div>
     <div class="text-center">
@@ -37,8 +37,14 @@ export default {
   data() {
     return {
       selected: null,
-      options: ['list', 'of', 'options'],
-      repair1Complete: false,
+      options: [
+        { label: 'Flat Tire $10', id: 10 },
+        { label: 'Chain Repair $3', id: 3 },
+        { label: 'Frame Tuning $5', id: 5 },
+        { label: 'Brakes Repair $4', id: 4 },
+        { label: 'Other - Visit store', id: 0 },
+      ],
+      repair1Complete: true,
       description1: [
         'Inflat Tires',
         'Lube Chain',
@@ -55,20 +61,45 @@ export default {
         'Parts Replacement',
         'Wheel Tuning',
         'Drivetrain Cleaning'
-      ]
+      ], 
+      package1: false,
+      package2: false,
+      package3: false,
     }
   },
   methods: {
     goToNextStep() {
-      this.repair1Complete = true;
-      console.log(this.selected)
+      var individualRepairSum = this.selected.reduce((a, b) => a + b, 0)
+      window.localStorage.setItem('individualRepair', individualRepairSum)
+      this.repair1Complete = true
     },
+    selected1(selected) {
+      this.package1 = selected
+      this.package2 = false
+      this.package3 = false
+    }, 
+    selected2(selected) {
+      this.package1 = false
+      this.package2 = selected
+      this.package3 = false
+    }, 
+    selected3(selected) {
+      this.package1 = false
+      this.package2 = false
+      this.package3 = selected
+    }
   }, created() {
     this.description2 = this.description1.concat(this.description2)
     this.description3 = this.description2.concat(this.description3)
-  }
+  },
 }
 </script>
 
-<style scoped>
+<style>
+.vs__dropdown-toggle {
+  padding: 10px !important; 
+}
+.vs__selected {
+  border-radius: 15px !important;
+}
 </style>
