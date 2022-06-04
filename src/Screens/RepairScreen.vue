@@ -2,11 +2,12 @@
   <div v-if="!repair1Complete">
     <div>
       <h3 class="mb-4 text-center">Seasonal Repairs</h3>
-      <b-card-group class="d-flex justify-content-around pb-5">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
         <card-component class=" mx-2" title="Basic Tuneup" subtitle="$20" :body=description1 :buttonBool="package1" @selected="selected1"></card-component>
         <card-component class=" mx-2" title="Classic Tuneup" subtitle="$50" :body=description2 :buttonBool="package2" @selected="selected2"></card-component>
         <card-component class=" mx-2" title="Premium Tuneup" subtitle="$70" :body=description3 :buttonBool="package3" @selected="selected3"></card-component>
-      </b-card-group>
+      </div>
+      <!-- </b-card-group> -->
     </div>
     <h3 class="mb-4 mt-5 text-center">Individual Part Repair</h3>
     <div class="d-flex justify-content-center mb-5">
@@ -44,7 +45,7 @@ export default {
         { label: 'Brakes Repair $4', id: 4 },
         { label: 'Other - Visit store', id: 0 },
       ],
-      repair1Complete: true,
+      repair1Complete: false,
       description1: [
         'Inflat Tires',
         'Lube Chain',

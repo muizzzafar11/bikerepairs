@@ -1,14 +1,13 @@
 <template>
-  <!-- <div> -->
-      <b-card header-bg-variant="dark" border-variant="dark">
-        <template #header>
-          <div class="header-text text-center py-5">
-            <h5 class="mb-0">{{title}}</h5>
-            <h6 class="mb-0">{{subtitle}}</h6>
-          </div>
-        </template>
-        <b-card-text class="text-muted">
-          <ul>
+  <div class="col mb-4">
+    <div class="card bg-dark h-100">
+      <div class="card-header text-center py-5 mx-0">
+        <h5 class="mb-0">{{title}}</h5>
+        <h6 class="mb-0">{{subtitle}}</h6>
+      </div>
+      <div class="card-body">
+        <div class="card-body text-muted">
+            <ul v-if="showAdditionalOptions">
               <li 
                 v-for='p in body'
                 :key='p'  
@@ -16,14 +15,16 @@
                 {{ p }}
               </li>
             </ul>
-        </b-card-text>
-        <template #footer>
-          <div class="text-center">
-            <b-button variant="secondary" @click="select()">{{selected?'selected':'select'}}</b-button>
-          </div>
-        </template>
-      </b-card>
-  <!-- </div> -->
+            <div v-else>
+              <p class="text-muted">{{body}}</p>
+            </div>
+        </div>
+      </div>
+      <div class="card-footer text-center" v-if="showAdditionalOptions">
+        <b-button variant="secondary" @click="select()">{{selected?'selected':'select'}}</b-button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -33,7 +34,12 @@ export default {
     title: String,
     subtitle: String,
     body: Array,
+    stringBody: String,
     buttonBool: Boolean,
+    showAdditionalOptions: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
