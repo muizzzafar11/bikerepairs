@@ -2,7 +2,7 @@
   <div class="simple-example px-5 text-center pb-5">
     <h3 class="mb-4">Select Repair Time</h3>
     <vue-meeting-selector
-      style="background: white; border-radius: 30px;"
+      style="background: white; border-radius: 30px; overflow: scroll;"
       ref="meetingSelector"
       class="meeting-selector px-4 py-4"
       :date="date"
