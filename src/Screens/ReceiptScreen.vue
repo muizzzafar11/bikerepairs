@@ -1,18 +1,19 @@
 <template>
-  <b-container class="bv-example-row w-50 px-5 py-5">
-  <b-row>
-    <b-col class="my-auto">
+  <h3 class="pt-4 mb-4 text-center">Booking Confirmed</h3>
+  <div class="bv-example-row col-lg-6 col-md-8 col-sm-12 col-12 mx-auto">
+  <div class="row px-5 py-5">
+    <div class="col-md-6 col-sm-12 col-12 my-auto">
         <p class="text-muted"><b>Time: </b>{{time}}</p>
         <p class="text-muted"><b>Associate: </b>{{associate}}</p>
         <p class="text-muted"><b>Phone: </b>{{phone}}</p>
         <p class="text-muted"><b>Total: </b>${{price}} + HST</p>
         <p class="text-muted"><b>Location: </b>{{Location}} {{province}}</p>
-    </b-col>
-    <b-col class="my-auto">
+    </div>
+    <div class="col my-auto">
       <img src="@/assets/logo_bk.png" class="img-fluid">
-    </b-col>
-  </b-row>
-</b-container>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -23,13 +24,15 @@ export default {
       time: new Date(JSON.parse(window.localStorage.getItem('meetingDate'))).toLocaleString(),
       associate: window.localStorage.getItem('selectedAssociate'),
       phone: '000-000-0000',
-      price: parseInt(window.localStorage.getItem('individualRepair')) + parseInt(window.localStorage.getItem('selectedPackage')),
+      individualRepairPrice: parseInt(window.localStorage.getItem('individualRepair')),
+      selectedPackagePrice: parseInt(window.localStorage.getItem('selectedPackage')),
+      price: 0,
       Location: '123 Testing Street',
       province: 'Ottawa, ON'
     }
   }, created() {
-
-    
+    this.price = this.individualRepairPrice? this.individualRepairPrice : 0 + 
+                 this.selectedPackagePrice? this.selectedPackagePrice: 0
   },
 }
 </script>
