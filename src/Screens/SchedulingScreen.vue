@@ -65,13 +65,17 @@ export default {
     }
   }, methods: {
     goToNextStep() {
-      var date = new Date(this.meeting.date)
-      window.localStorage.setItem('meetingDate', JSON.stringify(date))
-      window.localStorage.setItem('selectedAssociate', this.selected)
-      window.localStorage.setItem('name', this.name)
-      window.localStorage.setItem('email', this.email)
-      window.localStorage.setItem('phone', this.phone)
-      this.$router.push('/receipt')
+      if(this.meeting && this.selected && this.name && this.email && this.phone) {
+        var date = new Date(this.meeting.date)
+        window.localStorage.setItem('meetingDate', JSON.stringify(date))
+        window.localStorage.setItem('selectedAssociate', this.selected)
+        window.localStorage.setItem('name', this.name)
+        window.localStorage.setItem('email', this.email)
+        window.localStorage.setItem('phone', this.phone)
+        this.$router.push('/receipt')
+      } else {
+        alert('Please fill out all fields')
+      }
     },
   }, created() {
     this.meetingsDays = this.meetingsDays.filter(days => {

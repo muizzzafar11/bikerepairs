@@ -43,7 +43,7 @@ export default {
         { label: 'Chain Repair $3', id: 3 },
         { label: 'Frame Tuning $5', id: 5 },
         { label: 'Brakes Repair $4', id: 4 },
-        { label: 'Other - Visit store', id: 0 },
+        { label: 'Other - Visit Store', id: 0 },
       ],
       repair1Complete: false,
       description1: [
@@ -70,9 +70,15 @@ export default {
   },
   methods: {
     goToNextStep() {
-      var individualRepairSum = this.selected.reduce((a, b) => a + b, 0)
-      window.localStorage.setItem('individualRepair', individualRepairSum)
-      this.repair1Complete = true
+      var packageSelected = this.package1 || this.package2 || this.package3;
+      // var individualRepSelected = this.selected !== null && this.selected?.length !== 0
+      if(!this.selected && !packageSelected) {
+        alert("Please select at least one repair type")
+      } else {
+        var individualRepairSum = this.selected?.reduce((a, b) => a + b, 0)
+        window.localStorage.setItem('individualRepair', individualRepairSum)
+        this.repair1Complete = true
+      }
     },
     selected1(selected) {
       this.package1 = selected
