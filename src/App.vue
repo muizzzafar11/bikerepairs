@@ -50,6 +50,7 @@ export default {
   padding: 20px;
   background: linear-gradient(269.69deg, #141414 0.22%, #373737 95.97%);
   min-height: 100vh;
+  max-width: 100vw;
   /* margin-top: 60px; */
 }
 p, h1, h2, h3, h4 {

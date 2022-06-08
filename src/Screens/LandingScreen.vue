@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100%; overflow: scroll;" class="row">
+  <div style="height: 100%; overflow: hidden;" class="row">
     <div class="col-sm-12 col-lg-5 pt-5">
       <h1 class="display-3">Bikes perfectly attuned to your needs</h1>
       <h3 class="mt-3">Our shop provides a variety of products and bicycle parts for you to enjoy your bike ride to the fullest</h3>
