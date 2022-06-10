@@ -13,13 +13,20 @@
   </div>
   <div class="px-5 py-5 text-center">
       <h3 class="mb-4">Associate Preference</h3>
-      <b-form-select class="py-2" v-model="selected" :options="options" style="border-radius: 10rem"></b-form-select>
+      <select class="custom-select py-2 px-1 w-100" v-model="selected" style="border-radius: 10rem">
+        <option selected>Open this select menu</option>
+        <option value="John Doe">John Doe - bike repair specialist</option>
+        <option value="Jane Doe">Jane Doe - bike repair specialist</option>
+        <option value="Jack Doe">John Doe - store owner</option>
+        <option value="Jamal Doe">Jamal Doe - mechanical part repair</option>
+        <option value="Oprah Winfrey">Oprah Winfrey - intern</option>
+      </select>
   </div>
   <div class="px-5 py-5  text-center">
       <h3 class="mb-4">Personal Information</h3>
-      <b-form-input class="py-2" v-model="name" placeholder="Enter your name" style="border-radius: 10rem"></b-form-input>
-      <b-form-input class="mt-3 py-2" v-model="email" placeholder="Enter your email" style="border-radius: 10rem"></b-form-input>
-      <b-form-input class="mt-3 py-2" v-model="phone" placeholder="Enter your phone" style="border-radius: 10rem"></b-form-input>
+      <input class="py-2 form-control" v-model="name" placeholder="Enter your name" style="border-radius: 10rem">
+      <input class="mt-3 py-2 form-control" v-model="email" placeholder="Enter your email" type="email" style="border-radius: 10rem">
+      <input class="mt-3 py-2 form-control" v-model="phone" placeholder="Enter your phone" style="border-radius: 10rem">
   </div>
   <div class="text-center">
       <BButton pill class="px-5 py-2 mt-2" variant="light" @click="goToNextStep()">Confirm Booking</BButton>
@@ -36,13 +43,6 @@ export default {
   }, data() {
     return {
       selected: null,
-      options: [
-        { value: 'John Doe', text: 'John Doe - bike repair specialist' },
-        { value: 'Jane Doe', text: 'Jane Doe - bike repair specialist' },
-        { value: 'Jack Doe', text: 'John Doe - store owner' },
-        { value: 'Jamal Doe', text: 'Jamal Doe - mechanical part repair' },
-        { value: 'Oprah Winfrey', text: 'Oprah Winfrey - intern' },
-      ],
       meetingSelector: null,
       meeting: null,
       name: null,
@@ -53,12 +53,12 @@ export default {
         new Date(),
         7,
         {
-          hours: 8,
+          hours: 9,
           minutes: 0,
         }, 
         {
           hours: 16,
-          minutes: 0,
+          minutes: 30,
         }, 
         30
       ),

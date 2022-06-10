@@ -6,9 +6,10 @@
         <h6 class="mb-0">{{subtitle}}</h6>
       </div>
       <div class="card-body">
-        <div class="card-body text-muted">
+        <div class="card-body">
             <ul v-if="showAdditionalOptions">
-              <li 
+              <li
+                style="color: #e3e3e3"
                 v-for='p in body'
                 :key='p'  
               >
@@ -16,12 +17,15 @@
               </li>
             </ul>
             <div v-else>
-              <p class="text-muted">{{body}}</p>
+              <p style="color: #e3e3e3">{{body}}</p>
             </div>
         </div>
       </div>
       <div class="card-footer text-center" v-if="showAdditionalOptions">
         <b-button variant="secondary" @click="select()">{{selected?'selected':'select'}}</b-button>
+      </div>
+      <div class="card-footer text-center" v-else>
+        <b-button variant="secondary" @click="openLinkedIn()">See Profile</b-button>
       </div>
     </div>
   </div>
@@ -33,7 +37,7 @@ export default {
   props: {
     title: String,
     subtitle: String,
-    body: Array,
+    body: null,
     stringBody: String,
     buttonBool: Boolean,
     showAdditionalOptions: {
@@ -53,6 +57,8 @@ export default {
         this.$emit('selected', this.selected)
       window.localStorage.setItem('selectedPackage', 
       this.selected? this.subtitle.substring(this.subtitle.indexOf('$')+1) : null)
+    }, openLinkedIn () {
+      window.open('https://www.linkedin.com/in/muizz-zafar/', '_blank').focus();
     }
   }, watch: {
     buttonBool(newVal) {
